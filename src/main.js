@@ -94,7 +94,7 @@ const smoothstep = (min, max, t) => {
 
 const sig = x => x < 0 ? -1 : 1;
 
-let pointer = [0, 0], dpointer = [0, 0], target = [0, 0];
+let pointer = [0, 0], dpointer = [0, 0], target;
 let zoom = LINES0, dzoom = 0;
 
 function onMouseMove({ canvas }, e) {
@@ -109,6 +109,9 @@ function onMouseWheel(Γ, e) {
 
 let height = 0.0;
 function update(dt) {
+  if (!target)
+    return;
+
   dpointer = [(target[0] - pointer[0]) * SPEED, (target[1] - pointer[1]) * SPEED];
 
   pointer[0] += dpointer[0]*dt; pointer[1] += dpointer[1]*dt;
@@ -117,12 +120,12 @@ function update(dt) {
   zoom = Math.max(LINES_MIN, Math.min(LINES_MAX, zoom + dzoom*3*dt));
   dzoom *= DRAG * 0.9;
 
-  if (!target || height >= 1.0 - ε)
+  if (height >= 1.0 - ε)
     return;
 
   height =
     height < 1.0 - ε
-    ? Math.min(1.0, height + Math.abs(height - 1.0)*dt*10)
+    ? Math.min(1.0, height + Math.abs(height - 1.0)*dt*3)
     : 1.0
 }
 

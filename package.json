@@ -6,7 +6,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development parcel src/index.html --open",
     "build": "cross-env NODE_ENV=production parcel build src/index.html --public-url ./ && npm run -s move",
-    "move": "mv dist/reverse-highway.html dist/index.html",
+    "move": "mv dist/contour-lines.html dist/index.html",
     "deploy": "gh-pages -d dist"
   },
   "repository": {
