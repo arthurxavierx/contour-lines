@@ -21,7 +21,7 @@ function main() {
       !Modernizr.webgl ||
       !Modernizr.webglextensions ||
       !Modernizr.webglextensions.OES_standard_derivatives)
-    document.body.className += 'incompatible';
+    document.body.className += ' incompatible';
 
   const { canvas, context: gl } = createCanvas('canvas');
   resizeCanvas(gl);
@@ -49,6 +49,7 @@ function main() {
 
   document.body.addEventListener('mousewheel', onMouseWheel.bind(null, Γ), false);
   document.body.addEventListener('mousemove', onMouseMove.bind(null, Γ), false);
+  document.body.addEventListener('touchmove', onMouseMove.bind(null, Γ), false);
 }
 
 function resizeCanvas(gl) {
@@ -90,8 +91,10 @@ function introduction() {
     document.body.className += ' playing';
     window.setTimeout(() => $$('#introduction').innerHTML = '', 1000);
     document.removeEventListener('mousemove', handler);
+    document.removeEventListener('touchmove', handler);
   };
   document.addEventListener('mousemove', handler);
+  document.addEventListener('touchmove', handler);
 }
 
 const smoothstep = (min, max, t) => {
@@ -105,7 +108,11 @@ let pointer = [0, 0], dpointer = [0, 0], target;
 let zoom = LINES0, dzoom = 0;
 
 function onMouseMove({ canvas }, e) {
-  target = [e.clientX / canvas.clientWidth, 1 - e.clientY / canvas.clientHeight];
+  target =
+    e.touches
+    ? [e.touches[0].clientX / canvas.clientWidth, 1 - e.touches[0].clientY / canvas.clientHeight]
+    : [e.clientX / canvas.clientWidth, 1 - e.clientY / canvas.clientHeight];
+  // target = [e.clientX / canvas.clientWidth, 1 - e.clientY / canvas.clientHeight];
 }
 
 function onMouseWheel(Γ, e) {

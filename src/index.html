@@ -26,13 +26,18 @@
       </div>
 
       <div id="introduction">
-        <img src="./img/icon/mouse-move.png" alt="Move the mouse to transform the terrain" />
-        +
-        <img src="./img/icon/mouse-wheel.png" alt="Scroll to elevate the terrain" />
+        <div class="instructions if-no-touchevents">
+          <img src="./img/icon/mouse-move.png" alt="Move the mouse to transform the terrain" />
+          +
+          <img src="./img/icon/mouse-wheel.png" alt="Scroll to elevate the terrain" />
+        </div>
+        <div class="instructions if-touchevents">
+          <img src="./img/icon/drag.png" alt="Touch and drag to transform the terrain" />
+        </div>
       </div>
 
       <footer>
-        <p id="debug"></p>
+        <p>Mobile devices are not recommended for this page.</p>
         <p>Source code on <a href="//github.com/arthurxavierx/contour-lines">GitHub</a></p>
       </footer>
     </div>

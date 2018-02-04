@@ -49,31 +49,38 @@ canvas {
 }
 
 #introduction {
-  font-size: 1.8rem;
-  font-weight: 700;
-
   flex: 1;
   display: flex;
-  flex-flow: row;
+  flex-flow: column;
   align-items: center;
   justify-content: center;
   opacity: 1;
   transition: opacity 1s;
 }
 
-#introduction > img {
-  margin: 0 3.2rem;
-}
-
 .playing #introduction {
   opacity: 0;
+}
+
+.instructions {
+  font-size: 1.8rem;
+  font-weight: 700;
+
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.instructions > img {
+  margin: 0 3.2rem;
 }
 
 footer {
   font-size: 1.1rem;
   text-align: center;
   width: 100%;
-  flex: 3.6rem 0;
+  flex: 5.4rem 0;
 }
 
 #incompatible,
@@ -81,3 +88,9 @@ footer {
 .incompatible #introduction { display: none; }
 .incompatible #incompatible { display: inherit; }
 
+
+.if-touchevents,
+.if-no-touchevents { display: none; }
+
+.touchevents .if-touchevents,
+.no-touchevents .if-no-touchevents { display: inherit; }

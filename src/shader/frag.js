@@ -7,10 +7,8 @@ export default fragmentShader(`
 #extension GL_OES_standard_derivatives : enable
 
 #ifdef GL_ES
-precision mediump float;
+precision highp float;
 #endif
-
-#define PI 3.14159265359
 
 uniform vec2 u_Pointer;
 uniform vec2 u_Offset;
