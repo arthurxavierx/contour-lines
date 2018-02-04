@@ -17,6 +17,12 @@ const $$ = document.querySelector.bind(document);
 window.addEventListener('load', main, false);
 
 function main() {
+  if (!Modernizr.canvas ||
+      !Modernizr.webgl ||
+      !Modernizr.webglextensions ||
+      !Modernizr.webglextensions.OES_standard_derivatives)
+    document.body.className += 'incompatible';
+
   const { canvas, context: gl } = createCanvas('canvas');
   resizeCanvas(gl);
 
@@ -80,11 +86,12 @@ function initGL(gl, Γ) {
 }
 
 function introduction() {
-  const handler = document.addEventListener('mousemove', () => {
+  const handler = () => {
     document.body.className += ' playing';
     window.setTimeout(() => $$('#introduction').innerHTML = '', 1000);
     document.removeEventListener('mousemove', handler);
-  });
+  };
+  document.addEventListener('mousemove', handler);
 }
 
 const smoothstep = (min, max, t) => {

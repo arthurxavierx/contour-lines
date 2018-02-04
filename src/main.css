@@ -75,3 +75,9 @@ footer {
   width: 100%;
   flex: 3.6rem 0;
 }
+
+#incompatible,
+.incompatible #canvas,
+.incompatible #introduction { display: none; }
+.incompatible #incompatible { display: inherit; }
+
