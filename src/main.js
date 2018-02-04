@@ -6,7 +6,7 @@ import SHADER_VERT from './shader/vert';
 import SHADER_FRAG from './shader/frag';
 
 //
-const ε = 0.00001, SPEED = 10.0, DRAG = 0.98, OFFSET = 1000.0;
+const ε = 0.00001, SPEED = 0.15, DRAG = 0.98, OFFSET = 1000.0;
 
 const LINES0 = 5, LINES_MIN = 1, LINES_MAX = 12;
 
@@ -112,7 +112,6 @@ function onMouseMove({ canvas }, e) {
     e.touches
     ? [e.touches[0].clientX / canvas.clientWidth, 1 - e.touches[0].clientY / canvas.clientHeight]
     : [e.clientX / canvas.clientWidth, 1 - e.clientY / canvas.clientHeight];
-  // target = [e.clientX / canvas.clientWidth, 1 - e.clientY / canvas.clientHeight];
 }
 
 function onMouseWheel(Γ, e) {
@@ -128,7 +127,7 @@ function update(dt) {
 
   dpointer = [(target[0] - pointer[0]) * SPEED, (target[1] - pointer[1]) * SPEED];
 
-  pointer[0] += dpointer[0]*dt; pointer[1] += dpointer[1]*dt;
+  pointer[0] += dpointer[0]; pointer[1] += dpointer[1];
   dpointer[0] *= DRAG; dpointer[1] *= DRAG;
 
   zoom = Math.max(LINES_MIN, Math.min(LINES_MAX, zoom + dzoom*3*dt));
